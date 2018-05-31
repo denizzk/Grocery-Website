@@ -1,0 +1,70 @@
+﻿
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/Home">Grocery</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                @if (Session["UserID"] != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size:medium; position:relative; bottom:-5px; color:white; right:15px;">
+                            <span style="color: orange"> Hello,</span>
+                            @Session["Username"]
+                        </a>
+                    </li>
+                    if (User.IsInRole("A"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Product" style="font-size:small">
+                                Product <br />
+                                Management
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/User" style="font-size:small">
+                                User <br />
+                                Management
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        Html.RenderAction("CartSummary", "ShoppingCart");
+
+                    }
+
+                    using (Html.BeginForm("LogOut", "Security", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right", style = "margin:0;" }))
+                    {
+                        <li class="nav-item">
+                            @Ajax.ActionLink("Sign Out", "Logout", "Security", null, new AjaxOptions { HttpMethod = "POST" }, new { @style = "font-size:small; position:relative; bottom:-14px; color:white; text-decoration:none; margin-left:15px;" })
+                        </li>
+                    }
+
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Security/Login" style="font-size:small">
+                            <span style="color: orange"> Hello,</span>
+                            Sign in <br />
+                            Your Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link align-bottom" href="ShoppingCart/">
+                            <span class="fa-layers">
+                                <i class="fas fa-shopping-cart fa-lg"></i>
+                                <strong class="fa-layers-counter" style="color:orange">0</strong>
+                            </span>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</nav>

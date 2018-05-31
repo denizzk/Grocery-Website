@@ -1,0 +1,50 @@
+﻿@model Grocery.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3><em>Review</em> your cart:</h3>
+<a class="btn btn-outline-primary" style="float:right;" href="/Checkout/AddressAndPayment">Checkout >></a>
+<div id="update-message">
+</div>
+<table class="table table-hover" id="tblCart">
+    <tr>
+        <th>
+            Item Name
+        </th>
+        <th>
+            Price (each)
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in
+Model.CartItems)
+    {
+        <tr id="row-@item.RecordId">
+            <td>                
+                @item.Item.Name
+            </td>
+            <td>
+                €@item.Item.Price
+            </td>
+            <td id="item-count-@item.RecordId">
+                @item.Count
+            </td>
+            <td><a class="btn RemoveLink" data-id="@item.RecordId"><i class="far fa-trash-alt fa-2x" style="color:red" /></a></td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td></td>
+        <td></td>
+        <td id="cart-total">
+            €@Model.CartTotal
+        </td>
+    </tr>
+</table>

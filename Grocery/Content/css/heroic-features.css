@@ -1,0 +1,77 @@
+
+
+body {
+    padding-top: 100px;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 120px;
+    }
+
+    .card:hover {
+        transform: scale(1.1);
+        transition: .3s;
+    }
+}
+
+.carousel {
+    margin-bottom: 60px;
+}
+
+.card {
+    height: 100%;
+    transition: .3s;
+}    
+
+.navbar-brand {
+    font-size: 2.5em;
+    font-weight: 500;
+    color: #f6f3f5;
+}
+
+    .navbar-brand:hover {
+        color: #99f3f5;
+    }
+
+.nav-link {
+    color: #f6f3f5;
+}
+
+    .nav-link:hover {
+        color: #99f3f5;
+    }
+
+.navbar {
+    background-color: #007cc7;
+}
+
+.btn.btn-info.btn-lg {
+    background-color: #ff6200;
+    border-color: #ff6200;
+    padding: 3px 40px;
+}
+
+.card-footer {
+    background-color: white;
+    border-top: 0;
+}
+
+.fa-lg {
+    font-size: 1.6em;
+    line-height: .75em;
+    vertical-align: -.45em;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+form {
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+label {
+    font-weight: 700;
+}

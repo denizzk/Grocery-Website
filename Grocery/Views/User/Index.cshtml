@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Grocery.Models.EntityFramework.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    <h2 style="float:left">User List</h2>
+    <a class="btn btn-success" style="float:right" href="/User/Create">Add New User</a>
+</p>
+<table class="table table-hover" id="tblUsers">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Address)
+        </td>
+        <td><a class="btn" href="/User/Edit/@item.Id"><i class="far fa-edit fa-2x" /></a></td>
+        <td><a class="btn" href="/User/Delete/@item.Id"><i class="far fa-trash-alt fa-2x" style="color:red" /></a></td>
+    </tr>
+}
+
+</table>

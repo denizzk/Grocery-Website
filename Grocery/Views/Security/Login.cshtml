@@ -1,0 +1,84 @@
+﻿@model Grocery.Models.EntityFramework.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+
+    <div class="container" style="padding-top:60px;">
+        <a href="/Home/Index" style="text-align: center; color: #0980d7; padding-top: 50px; text-decoration:none;"><h1>Grocery</h1> </a>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    </div>
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm())
+                        {
+                            <fieldset style= "width:360px; border-radius:8px; background-color:#fff; box-shadow:0 1px 5px 0 rgba(0,0,0,.15); padding:14px 30px 27px; margin-top:20px;">
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+                                    <h4 style="text-align:center;">Sign in to your account</h4>
+                                    <hr />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger", style="list-style-type:none;" })
+                                    @if (TempData["succesRegistered"] != null)
+                                    {
+                                    <div class="form-group">
+                                        <div class="col-md-12" style="color: limegreen;text-align:  center;font-size:  20px;">
+                                            @TempData["succesRegistered"]
+                                        </div>
+                                    </div>
+                                    }
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Username", required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", type = "password", required="required" } })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-12">
+                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                        </div>
+                                    </div>
+                                    <div style="border-bottom:1px solid #d9d9d9; line-height:16px; text-align:center;">
+                                        <span style="position:relative; bottom:-8px; background:#fff; padding:0 15px;">Don't have an account?</span>
+                                    </div>
+                                    <div class="col-md-offset-2 col-md-12">
+                                        <a href="/Security/Register" class="btn btn-outline-primary btn-block" style="position:relative; margin-top:20px;">Create a new account</a>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

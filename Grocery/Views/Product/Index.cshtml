@@ -1,0 +1,44 @@
+﻿@using Grocery.Models.EntityFramework
+@model List<Item>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="float:left">Product List</h2>
+<a class="btn btn-success" style="float:right" href="/Product/New">Add New Product</a>
+<table class="table table-hover" id="tblProducts">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock Status</th>
+            <th>Sale Unit</th>
+            <th> Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img class="table-data-image" src="~/UploadedImages/@item.ImageUrl" height="50" width="50" alt=""></td>
+                <td>@item.Name</td>
+                <td>€@item.Price</td>
+                @if ((bool)item.InStock)
+                {
+                    <td>In Stock</td>
+                }
+                else
+                {
+                    <td>Out of Stock</td>
+                }
+                <td>@item.SaleWith</td>
+                <td><a class="btn" href="/Product/Update/@item.Id"><i class="far fa-edit fa-2x" /></a></td>
+                <td><a class="btn btnDeleteProduct" data-id="@item.Id"><i class="far fa-trash-alt fa-2x" style="color:red" /></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
